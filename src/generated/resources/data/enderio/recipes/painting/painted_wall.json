@@ -1,9 +1,0 @@
-{
-  "type": "enderio:painting",
-  "input": {
-    "tag": "minecraft:walls"
-  },
-  "output": {
-    "item": "enderio:painted_wall"
-  }
-}

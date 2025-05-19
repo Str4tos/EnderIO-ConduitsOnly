@@ -27,7 +27,7 @@ apply plugin: 'org.moddingx.modgradle.mapping'
 
 version = getVersionString()
 group = 'com.enderio'
-archivesBaseName = "EnderIO-${minecraft_version}"
+archivesBaseName = "EnderIO-ConduitsOnly-${minecraft_version}"
 
 println("Building Ender IO version ${version}")
 println("Release type: ${getReleaseType()}")
@@ -39,8 +39,8 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 // TODO: 1.19: Tidy the divisions and what goes where.
 def subsets = [
         'conduits',
-        'machines',
-        'armory'
+        //'machines',
+        //'armory'
 ]
 
 sourceSets {
@@ -141,9 +141,9 @@ minecraft {
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             args '--mod', 'enderio', '--server', '--client', '--output', file('src/generated/resources/'),
                     '--existing', file('src/main/resources/'),
-                    '--existing', file('src/machines/resources/'),
+                    //'--existing', file('src/machines/resources/'),
                     '--existing', file('src/conduits/resources/'),
-                    '--existing', file('src/armory/resources/')
+                    //'--existing', file('src/armory/resources/')
 
             mods {
                 enderio {
@@ -209,7 +209,7 @@ repositories { RepositoryHandler handler ->
     exclusiveRepo(handler, 'https://api.modrinth.com/maven', 'maven.modrinth')
     exclusiveRepo(handler, "https://squiddev.cc/maven/", "cc.tweaked")
     exclusiveRepo(handler, 'https://maven.creeperhost.net/', 'com.refinedmods')
-    exclusiveRepo(handler, 'https://maven.rover656.dev/releases/', 'dev.gigaherz.graph')
+    exclusiveRepo(handler, 'https://dogforce-games.com/maven', 'dev.gigaherz.graph')
 
     mavenLocal()
 }
@@ -235,7 +235,7 @@ dependencies {
     api implementation(fg.deobf("dev.gigaherz.graph:GraphLib3:${graphlib_version}"))
     jarJar(group: 'dev.gigaherz.graph', name: 'GraphLib3', version: "${graphlib_version_range}")
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    machinesAnnotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    //machinesAnnotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
     // JEI
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
@@ -306,9 +306,9 @@ dependencies {
 // MixinGradle Settings
 mixin {
     add sourceSets.main, "mixins.enderio.refmap.json"
-    add sourceSets.machines, "mixins.enderio-machines.refmap.json"
+    //add sourceSets.machines, "mixins.enderio-machines.refmap.json"
     config "mixins.enderio.json"
-    config "mixins.enderio-machines.json"
+    //config "mixins.enderio-machines.json"
 }
 
 reobf.create('jarJar')

@@ -6,19 +6,16 @@
       "item": "enderio:conduit_binder"
     },
     "G": {
-      "tag": "enderio:fused_quartz"
-    },
-    "I": {
-      "tag": "forge:ingots/vibrant_alloy"
+      "item": "enderio:pressurized_fluid_conduit"
     }
   },
   "pattern": [
     "BBB",
-    "IGI",
+    "GGG",
     "BBB"
   ],
   "result": {
-    "count": 8,
+    "count": 3,
     "item": "enderio:ender_fluid_conduit"
   },
   "show_notification": true

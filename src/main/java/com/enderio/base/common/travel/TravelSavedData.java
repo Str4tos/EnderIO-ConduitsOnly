@@ -4,7 +4,6 @@ import com.enderio.EnderIO;
 import com.enderio.api.travel.ITravelTarget;
 import com.enderio.api.travel.TravelRegistry;
 import com.enderio.base.common.network.AddTravelTargetPacket;
-import com.enderio.base.common.network.RemoveTravelTargetPacket;
 import com.enderio.base.common.network.SyncTravelDataPacket;
 import com.enderio.core.common.network.CoreNetwork;
 import net.minecraft.core.BlockPos;
@@ -83,12 +82,6 @@ public class TravelSavedData extends SavedData {
         }
     }
 
-    public void removeTravelTargetAt(Level level, BlockPos pos) {
-        if (!level.isClientSide) {
-            CoreNetwork.sendToDimension(level.dimension(), new RemoveTravelTargetPacket(pos));
-        }
-        travelTargets.remove(pos);
-    }
 
     @Override
     public CompoundTag save(CompoundTag nbt) {

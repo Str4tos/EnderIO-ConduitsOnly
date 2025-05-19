@@ -3,7 +3,7 @@
   "category": "misc",
   "key": {
     "A": {
-      "item": "enderio:conductive_alloy_ingot"
+      "tag": "forge:ingots/gold"
     },
     "C": {
       "item": "minecraft:comparator"

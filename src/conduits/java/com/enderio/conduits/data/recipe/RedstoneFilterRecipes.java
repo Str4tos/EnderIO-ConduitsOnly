@@ -21,74 +21,7 @@ public class RedstoneFilterRecipes extends RecipeProvider {
 
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ConduitItems.NOT_FILTER)
-            .define('T', Items.REDSTONE_TORCH)
-            .define('B', EIOItems.REDSTONE_FILTER_BASE)
-            .define('I', EIOTags.Items.INGOTS_REDSTONE_ALLOY)
-            .pattern("TBI")
-            .unlockedBy("has_ingredient", has(EIOItems.REDSTONE_FILTER_BASE))
-            .save(consumer);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ConduitItems.OR_FILTER)
-            .define('B', EIOItems.REDSTONE_FILTER_BASE)
-            .define('I', EIOTags.Items.INGOTS_REDSTONE_ALLOY)
-            .pattern(" I ")
-            .pattern(" B ")
-            .pattern(" I ")
-            .unlockedBy("has_ingredient", has(EIOItems.REDSTONE_FILTER_BASE))
-            .save(consumer);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ConduitItems.AND_FILTER)
-            .define('B', EIOItems.REDSTONE_FILTER_BASE)
-            .define('T', Items.REDSTONE_TORCH)
-            .pattern(" T ")
-            .pattern(" B ")
-            .pattern(" T ")
-            .unlockedBy("has_ingredient", has(EIOItems.REDSTONE_FILTER_BASE))
-            .save(consumer);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ConduitItems.XOR_FILTER)
-            .define('B', EIOItems.REDSTONE_FILTER_BASE)
-            .define('T', Items.REDSTONE_TORCH)
-            .define('I', EIOTags.Items.INGOTS_REDSTONE_ALLOY)
-            .pattern(" T ")
-            .pattern("IBI")
-            .pattern(" T ")
-            .unlockedBy("has_ingredient", has(EIOItems.REDSTONE_FILTER_BASE))
-            .save(consumer);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ConduitItems.TLATCH_FILTER)
-            .define('B', EIOItems.REDSTONE_FILTER_BASE)
-            .define('L', Items.LEVER)
-            .define('I', EIOTags.Items.INGOTS_REDSTONE_ALLOY)
-            .pattern("LBI")
-            .unlockedBy("has_ingredient", has(EIOItems.REDSTONE_FILTER_BASE))
-            .save(consumer);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ConduitItems.COUNT_FILTER)
-            .define('B', EIOItems.REDSTONE_FILTER_BASE)
-            .define('I', EIOTags.Items.INGOTS_REDSTONE_ALLOY)
-            .pattern("I  ")
-            .pattern("IBI")
-            .pattern("I  ")
-            .unlockedBy("has_ingredient", has(EIOItems.REDSTONE_FILTER_BASE))
-            .save(consumer);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ConduitItems.SENSOR_FILTER)
-            .define('B', EIOItems.REDSTONE_FILTER_BASE)
-            .define('I', EIOTags.Items.INGOTS_REDSTONE_ALLOY)
-            .define('C', Items.COMPARATOR)
-            .pattern("CBI")
-            .unlockedBy("has_ingredient", has(EIOItems.REDSTONE_FILTER_BASE))
-            .save(consumer);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ConduitItems.TIMER_FILTER)
-            .define('B', EIOItems.REDSTONE_FILTER_BASE)
-            .define('I', EIOTags.Items.INGOTS_REDSTONE_ALLOY)
-            .define('C', Items.CLOCK)
-            .pattern("IBC")
-            .unlockedBy("has_ingredient", has(EIOItems.REDSTONE_FILTER_BASE))
-            .save(consumer);
 
         conversionRecipes(consumer);
     }

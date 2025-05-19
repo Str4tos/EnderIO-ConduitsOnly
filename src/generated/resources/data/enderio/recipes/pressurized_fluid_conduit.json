@@ -5,17 +5,17 @@
     "B": {
       "item": "enderio:conduit_binder"
     },
-    "G": {
-      "tag": "enderio:fused_quartz"
+    "F": {
+      "item": "enderio:fluid_conduit"
     }
   },
   "pattern": [
     "BBB",
-    "GGG",
+    "FFF",
     "BBB"
   ],
   "result": {
-    "count": 8,
+    "count": 3,
     "item": "enderio:pressurized_fluid_conduit"
   },
   "show_notification": true

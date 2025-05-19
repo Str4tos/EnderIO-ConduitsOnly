@@ -4,7 +4,6 @@ import com.enderio.api.conduit.ConduitType;
 import com.enderio.api.conduit.ConduitData;
 import com.enderio.api.conduit.model.ConduitCoreModelModifier;
 import com.enderio.api.misc.RedstoneControl;
-import com.enderio.base.client.model.PaintingQuadTransformer;
 import com.enderio.conduits.client.model.conduit.modifier.ConduitCoreModelModifiers;
 import com.enderio.conduits.common.Area;
 import com.enderio.conduits.common.conduit.ConduitGraphObject;
@@ -137,7 +136,7 @@ public class ConduitBlockModel implements IDynamicBakedModel {
 
                     quads.addAll(rotation
                         .andThen(new BlockColorQuadDataTransformer(pos, Minecraft.getInstance().level, facade))
-                        .andThen(new PaintingQuadTransformer(facade, renderType))
+                        //.andThen(new PaintingQuadTransformer(facade, renderType))
                         .process(modelOf(CONDUIT_FACADE).getQuads(state, preRotation, rand, ModelData.EMPTY, renderType)));
                 }
             }

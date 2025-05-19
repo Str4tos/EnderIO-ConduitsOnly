@@ -1,9 +1,0 @@
-{
-  "type": "enderio:painting",
-  "input": {
-    "item": "enderio:painted_slab"
-  },
-  "output": {
-    "item": "enderio:painted_slab"
-  }
-}

@@ -1,8 +1,6 @@
 package com.enderio.base.common.item.tool;
 
-import com.enderio.api.capability.ISideConfig;
 import com.enderio.base.common.blockentity.IWrenchable;
-import com.enderio.base.common.init.EIOCapabilities;
 import com.mojang.datafixers.util.Either;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -12,12 +10,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.Property;
-import net.minecraftforge.common.util.LazyOptional;
 
 import java.util.Optional;
 
@@ -35,17 +31,7 @@ public class YetaWrenchItem extends Item {
         if(!level.isClientSide && level.getBlockEntity(pos) instanceof IWrenchable wrenchable) {
             return wrenchable.onWrenched(pContext.getPlayer(), pContext.getClickedFace());
         }
-        
-        // Check for side config capability
-        BlockEntity be = level.getBlockEntity(pos);
-        if (be != null) {
-            LazyOptional<ISideConfig> optSideConfig = be.getCapability(EIOCapabilities.SIDE_CONFIG, pContext.getClickedFace());
-            if (optSideConfig.isPresent()) {
-                // Cycle state.
-                optSideConfig.ifPresent(ISideConfig::cycleMode);
-                return InteractionResult.sidedSuccess(level.isClientSide());
-            }
-        }
+
 
         if (level.isClientSide()) {
             return InteractionResult.SUCCESS;

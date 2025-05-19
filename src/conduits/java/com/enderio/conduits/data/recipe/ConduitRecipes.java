@@ -25,6 +25,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
 
@@ -38,78 +39,77 @@ public class ConduitRecipes extends RecipeProvider {
         buildUpgradeRecipes(pWriter);
         buildUtilityRecipes(pWriter);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ConduitItems.ITEM, 8)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ConduitItems.ITEM, 3)
             .pattern("BBB")
             .pattern("PPP")
             .pattern("BBB")
             .define('B', EIOItems.CONDUIT_BINDER)
-            .define('P', EIOTags.Items.NUGGETS_PULSATING_ALLOY)
+            .define('P', Tags.Items.INGOTS_IRON)
             .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.CONDUIT_BINDER))
             .save(pWriter);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ConduitItems.FLUID, 8)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ConduitItems.FLUID, 3)
             .pattern("BBB")
             .pattern("GGG")
             .pattern("BBB")
             .define('B', EIOItems.CONDUIT_BINDER)
-            .define('G', EIOTags.Items.CLEAR_GLASS)
+            .define('G', Tags.Items.GLASS)
             .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.CONDUIT_BINDER))
             .save(pWriter);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ConduitItems.PRESSURIZED_FLUID, 8)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ConduitItems.PRESSURIZED_FLUID, 3)
+            .pattern("BBB")
+            .pattern("FFF")
+            .pattern("BBB")
+            .define('B', EIOItems.CONDUIT_BINDER)
+            .define('F', ConduitItems.FLUID)
+            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(ConduitItems.FLUID))
+            .save(pWriter);
+//
+//        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ConduitItems.PRESSURIZED_FLUID, 8)
+//            .pattern("BBB")
+//            .pattern("GCG")
+//            .pattern("BBB")
+//            .define('B', EIOItems.CONDUIT_BINDER)
+//            .define('G', EIOTags.Items.FUSED_QUARTZ)
+//            .define('C', ConduitItems.FLUID)
+//            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(ConduitItems.FLUID))
+//            .save(pWriter, EnderIO.loc("pressurized_fluid_conduit_upgrade"));
+//
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ConduitItems.ENDER_FLUID, 3)
             .pattern("BBB")
             .pattern("GGG")
             .pattern("BBB")
             .define('B', EIOItems.CONDUIT_BINDER)
-            .define('G', EIOTags.Items.FUSED_QUARTZ)
-            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(ConduitItems.FLUID))
-            .save(pWriter);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ConduitItems.PRESSURIZED_FLUID, 8)
-            .pattern("BBB")
-            .pattern("GCG")
-            .pattern("BBB")
-            .define('B', EIOItems.CONDUIT_BINDER)
-            .define('G', EIOTags.Items.FUSED_QUARTZ)
-            .define('C', ConduitItems.FLUID)
-            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(ConduitItems.FLUID))
-            .save(pWriter, EnderIO.loc("pressurized_fluid_conduit_upgrade"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ConduitItems.ENDER_FLUID, 8)
-            .pattern("BBB")
-            .pattern("IGI")
-            .pattern("BBB")
-            .define('B', EIOItems.CONDUIT_BINDER)
-            .define('G', EIOTags.Items.FUSED_QUARTZ)
-            .define('I', EIOTags.Items.INGOTS_VIBRANT_ALLOY)
+            .define('G', ConduitItems.PRESSURIZED_FLUID)
             .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(ConduitItems.PRESSURIZED_FLUID))
             .save(pWriter);
+//
+//        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ConduitItems.ENDER_FLUID, 8)
+//            .pattern("BBB")
+//            .pattern("ICI")
+//            .pattern("BBB")
+//            .define('B', EIOItems.CONDUIT_BINDER)
+//            .define('I', EIOItems.VIBRANT_ALLOY_INGOT)
+//            .define('C', ConduitItems.PRESSURIZED_FLUID)
+//            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(ConduitItems.PRESSURIZED_FLUID))
+//            .save(pWriter, EnderIO.loc("ender_fluid_conduit_upgrade"));
+//
+//        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ConduitItems.ENERGY, 8)
+//            .pattern("BBB")
+//            .pattern("III")
+//            .pattern("BBB")
+//            .define('B', EIOItems.CONDUIT_BINDER)
+//            .define('I', EIOTags.Items.INGOTS_CONDUCTIVE_ALLOY)
+//            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.CONDUIT_BINDER))
+//            .save(pWriter);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ConduitItems.ENDER_FLUID, 8)
-            .pattern("BBB")
-            .pattern("ICI")
-            .pattern("BBB")
-            .define('B', EIOItems.CONDUIT_BINDER)
-            .define('I', EIOItems.VIBRANT_ALLOY_INGOT)
-            .define('C', ConduitItems.PRESSURIZED_FLUID)
-            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(ConduitItems.PRESSURIZED_FLUID))
-            .save(pWriter, EnderIO.loc("ender_fluid_conduit_upgrade"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ConduitItems.ENERGY, 8)
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ConduitItems.REDSTONE, 3)
             .pattern("BBB")
             .pattern("III")
             .pattern("BBB")
             .define('B', EIOItems.CONDUIT_BINDER)
-            .define('I', EIOTags.Items.INGOTS_CONDUCTIVE_ALLOY)
-            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.CONDUIT_BINDER))
-            .save(pWriter);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ConduitItems.REDSTONE, 8)
-            .pattern("BBB")
-            .pattern("III")
-            .pattern("BBB")
-            .define('B', EIOItems.CONDUIT_BINDER)
-            .define('I', EIOTags.Items.INGOTS_REDSTONE_ALLOY)
+            .define('I', Tags.Items.DUSTS_REDSTONE)
             .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.CONDUIT_BINDER))
             .save(pWriter);
 
@@ -239,67 +239,64 @@ public class ConduitRecipes extends RecipeProvider {
     }
 
     private void buildUpgradeRecipes(Consumer<FinishedRecipe> pWriter) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ConduitItems.EXTRACTION_SPEED_UPGRADE_1.get(), 2)
-            .pattern("III")
-            .pattern("APA")
-            .pattern("ATA")
-            .define('I', Tags.Items.INGOTS_IRON)
-            .define('P', Items.PISTON)
-            .define('T', Items.REDSTONE_TORCH)
-            .define('A', EIOTags.Items.INGOTS_REDSTONE_ALLOY)
-            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.REDSTONE_ALLOY_INGOT))
-            .save(pWriter);
+//        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ConduitItems.EXTRACTION_SPEED_UPGRADE_1.get(), 2)
+//            .pattern("III")
+//            .pattern("APA")
+//            .pattern("ATA")
+//            .define('I', Tags.Items.INGOTS_IRON)
+//            .define('P', Items.PISTON)
+//            .define('T', Items.REDSTONE_TORCH)
+//            .define('A', Tags.Items.DUSTS_REDSTONE)
+//            .save(pWriter);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ConduitItems.EXTRACTION_SPEED_UPGRADE_2.get(), 2)
-            .pattern("III")
-            .pattern("APA")
-            .pattern("ATA")
-            .define('I', Tags.Items.INGOTS_IRON)
-            .define('P', Items.PISTON)
-            .define('T', Items.REDSTONE_TORCH)
-            .define('A', EIOTags.Items.INGOTS_CONDUCTIVE_ALLOY)
-            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.CONDUCTIVE_ALLOY_INGOT))
-            .save(pWriter);
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ConduitItems.EXTRACTION_SPEED_UPGRADE_2)
-            .requires(ConduitItems.EXTRACTION_SPEED_UPGRADE_1)
-            .requires(Ingredient.of(EIOTags.Items.INGOTS_CONDUCTIVE_ALLOY), 2)
-            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.CONDUCTIVE_ALLOY_INGOT))
-            .save(pWriter, EnderIO.loc("extraction_speed_upgrade_1_upgrade"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ConduitItems.EXTRACTION_SPEED_UPGRADE_3.get(), 2)
-            .pattern("III")
-            .pattern("APA")
-            .pattern("ATA")
-            .define('I', EIOTags.Items.INGOTS_DARK_STEEL)
-            .define('P', Items.PISTON)
-            .define('T', Items.REDSTONE_TORCH)
-            .define('A', EIOTags.Items.INGOTS_SOULARIUM)
-            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.SOULARIUM_INGOT))
-            .save(pWriter);
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ConduitItems.EXTRACTION_SPEED_UPGRADE_3)
-            .requires(ConduitItems.EXTRACTION_SPEED_UPGRADE_2)
-            .requires(Ingredient.of(EIOTags.Items.INGOTS_SOULARIUM), 2)
-            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.CONDUCTIVE_ALLOY_INGOT))
-            .save(pWriter, EnderIO.loc("extraction_speed_upgrade_2_upgrade"));
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ConduitItems.EXTRACTION_SPEED_UPGRADE_4.get(), 2)
-            .pattern("III")
-            .pattern("APA")
-            .pattern("ATA")
-            .define('I', EIOTags.Items.INGOTS_DARK_STEEL)
-            .define('P', Items.PISTON)
-            .define('T', Items.REDSTONE_TORCH)
-            .define('A', EIOTags.Items.INGOTS_ENERGETIC_ALLOY)
-            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.ENERGETIC_ALLOY_INGOT))
-            .save(pWriter);
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ConduitItems.EXTRACTION_SPEED_UPGRADE_4)
-            .requires(ConduitItems.EXTRACTION_SPEED_UPGRADE_3)
-            .requires(Ingredient.of(EIOTags.Items.INGOTS_ENERGETIC_ALLOY), 2)
-            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.ENERGETIC_ALLOY_INGOT))
-            .save(pWriter, EnderIO.loc("extraction_speed_upgrade_3_upgrade"));
+//        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ConduitItems.EXTRACTION_SPEED_UPGRADE_2.get(), 2)
+//            .pattern("III")
+//            .pattern("APA")
+//            .pattern("ATA")
+//            .define('I', Tags.Items.INGOTS_IRON)
+//            .define('P', Items.PISTON)
+//            .define('T', Items.REDSTONE_TORCH)
+//            .define('A', Tags.Items.INGOTS_GOLD)
+//            .save(pWriter);
+//
+//        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ConduitItems.EXTRACTION_SPEED_UPGRADE_2)
+//            .requires(ConduitItems.EXTRACTION_SPEED_UPGRADE_1)
+//            .requires(Ingredient.of(Items.GOLD_INGOT), 2)
+//            .save(pWriter, EnderIO.loc("extraction_speed_upgrade_1_upgrade"));
+//
+//        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ConduitItems.EXTRACTION_SPEED_UPGRADE_3.get(), 2)
+//            .pattern("III")
+//            .pattern("APA")
+//            .pattern("ATA")
+//            .define('I', EIOTags.Items.INGOTS_DARK_STEEL)
+//            .define('P', Items.PISTON)
+//            .define('T', Items.REDSTONE_TORCH)
+//            .define('A', EIOTags.Items.INGOTS_SOULARIUM)
+//            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.SOULARIUM_INGOT))
+//            .save(pWriter);
+//
+//        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ConduitItems.EXTRACTION_SPEED_UPGRADE_3)
+//            .requires(ConduitItems.EXTRACTION_SPEED_UPGRADE_2)
+//            .requires(Ingredient.of(EIOTags.Items.INGOTS_SOULARIUM), 2)
+//            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.CONDUCTIVE_ALLOY_INGOT))
+//            .save(pWriter, EnderIO.loc("extraction_speed_upgrade_2_upgrade"));
+//
+//        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ConduitItems.EXTRACTION_SPEED_UPGRADE_4.get(), 2)
+//            .pattern("III")
+//            .pattern("APA")
+//            .pattern("ATA")
+//            .define('I', EIOTags.Items.INGOTS_DARK_STEEL)
+//            .define('P', Items.PISTON)
+//            .define('T', Items.REDSTONE_TORCH)
+//            .define('A', EIOTags.Items.INGOTS_ENERGETIC_ALLOY)
+//            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.ENERGETIC_ALLOY_INGOT))
+//            .save(pWriter);
+//
+//        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ConduitItems.EXTRACTION_SPEED_UPGRADE_4)
+//            .requires(ConduitItems.EXTRACTION_SPEED_UPGRADE_3)
+//            .requires(Ingredient.of(EIOTags.Items.INGOTS_ENERGETIC_ALLOY), 2)
+//            .unlockedBy("has_ingredient", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.ENERGETIC_ALLOY_INGOT))
+//            .save(pWriter, EnderIO.loc("extraction_speed_upgrade_3_upgrade"));
     }
     
     private void buildUtilityRecipes(Consumer<FinishedRecipe> pWriter) {
@@ -309,10 +306,10 @@ public class ConduitRecipes extends RecipeProvider {
             .pattern("RIR")
             .define('P', Tags.Items.GLASS_PANES)
             .define('I', ConduitItems.ENERGY)
-            .define('A', EIOItems.CONDUCTIVE_ALLOY_INGOT)
+            .define('A', Tags.Items.INGOTS_GOLD)
             .define('C', Items.COMPARATOR)
             .define('R', ConduitItems.REDSTONE)
-            .unlockedBy("has_ingrediant", InventoryChangeTrigger.TriggerInstance.hasItems(EIOItems.CONDUCTIVE_ALLOY_INGOT))
+            .unlockedBy("has_ingrediant", InventoryChangeTrigger.TriggerInstance.hasItems(ConduitItems.REDSTONE))
             .save(pWriter);
     }
 }
